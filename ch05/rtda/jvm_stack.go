@@ -1,20 +1,18 @@
-package jvm
-
-import "jvmgo/ch05/rtda"
+package rtda
 
 type Stack struct {
 	maxSize uint
 	size    uint
-	_top    *rtda.Frame
+	_top    *Frame
 }
 
-func newStack(maxSize uint) *Stack {
+func NewStack(maxSize uint) *Stack {
 	return &Stack{
 		maxSize: maxSize,
 	}
 }
 
-func (self *Stack) push(frame *rtda.Frame) {
+func (self *Stack) Push(frame *Frame) {
 	if self.size >= self.maxSize {
 		panic("java.lang.StackOverflowError")
 	}
@@ -25,7 +23,7 @@ func (self *Stack) push(frame *rtda.Frame) {
 	self.size++
 }
 
-func (self *Stack) pop() *rtda.Frame {
+func (self *Stack) pop() *Frame {
 	if self._top == nil {
 		panic("jvm stack is empty!")
 	}
@@ -38,7 +36,7 @@ func (self *Stack) pop() *rtda.Frame {
 	return top
 }
 
-func (self *Stack) Top() *rtda.Frame {
+func (self *Stack) Top() *Frame {
 	if self._top == nil {
 		panic("jvm stack is empty")
 	}
